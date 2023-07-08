@@ -1,5 +1,3 @@
-import './tailwind.css';
-
 export { BannerCTA, type BannerCTAProps } from './components/BannerCTA';
 export {
   Thread,
