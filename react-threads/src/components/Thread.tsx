@@ -1,9 +1,16 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
-import Linkify from 'react-linkify';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '../utils/format';
+import { Linkify } from './Linkify';
 import { ThreadIcons } from './ThreadIcons';
+
+const LinkifyWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
+  if (typeof window !== 'undefined') {
+    return <Linkify>{children}</Linkify>;
+  }
+  return children;
+};
 
 export type ThreadLinkPreviewAttachmentProps = {
   link_preview_attachment: {
@@ -99,13 +106,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
               </div>
 
               <div className="pt-[10px] row-[2/span_2] col-[1/span_2]">
-                <Linkify
-                  componentDecorator={(decoratedHref, decoratedText, key) => (
-                    <a target="_blank" href={decoratedHref} key={key} style={{ color: 'rgb(0, 149, 246)' }}>
-                      {decoratedText}
-                    </a>
-                  )}
-                >
+                <LinkifyWrapper>
                   {!!post.caption?.text && (
                     <div>
                       <div
@@ -116,7 +117,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                       </div>
                     </div>
                   )}
-                </Linkify>
+                </LinkifyWrapper>
 
                 {/* <div className="mt-2">
                 <div className="z-0 flex min-h-0 position">
