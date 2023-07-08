@@ -25,9 +25,14 @@ const axiosOptions = {
     'sec-fetch-site': `cross-site`,
     'sec-fetch-user': `?1`,
     'upgrade-insecure-requests': `1`,
-    'x-asbd-id': undefined,
-    'x-fb-lsd': undefined,
-    'x-ig-app-id': undefined,
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+    'sec-ch-ua-full-version-list': `"Not.A/Brand";v="8.0.0.0", "Chromium";v="114.0.5735.198", "Google Chrome";v="114.0.5735.198"'`,
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-ch-ua-platform-version': '"13.0.0"',
+    'user-agent': `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36`,
+    'viewport-width': `536`,
   },
 };
 
