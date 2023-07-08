@@ -50,11 +50,9 @@ export async function getStaticPaths() {
 }
 
 const ThreadDetailPage: NextPage<Props> = (props) => {
-  console.log(props);
-  console.log(props.thread);
   return (
-    <div className="w-full bg-black">
-      <div className="max-w-xl">{!!props.thread && <Thread thread={props.thread} />}</div>
+    <div className="w-full bg-black flex items-center justify-center py-[36px] min-h-screen">
+      <div className="flex max-w-xl mx-auto">{!!props.thread && <Thread thread={props.thread} />}</div>
     </div>
   );
 };
