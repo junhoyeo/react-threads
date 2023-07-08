@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{ts,tsx}'],
+  content: [
+    './src/**/*.{ts,tsx}',
+
+    // generate styling for `react-threads`
+    '../node_modules/react-threads/**/*',
+  ],
   theme: {
     extend: {
       backgroundImage: {
