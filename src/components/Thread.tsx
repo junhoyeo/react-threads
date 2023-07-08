@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { type Thread as ThreadPost } from 'threads-api';
+import { formatToRelative } from '@/utils/format';
 import { ThreadIcons } from './ThreadIcons';
 
 type ThreadProps = {
@@ -47,7 +48,9 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                 </div>
 
                 <div className="flex items-center leading-[20px] col-[2]">
-                  <span className="text-[rgb(97,97,97)] min-w-[24px] text-center inline-block">2h</span>
+                  <span className="text-[rgb(97,97,97)] min-w-[24px] text-center inline-block">
+                    {formatToRelative(post.taken_at)}
+                  </span>
                   <div></div>
                 </div>
               </div>
