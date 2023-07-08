@@ -1,12 +1,19 @@
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '../utils/format';
 import { Linkify } from './Linkify';
 import { ThreadIcons } from './ThreadIcons';
 
 const LinkifyWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
-  if (typeof window !== 'undefined') {
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    // typeof window !== 'undefined'
+    setIsClient(true);
+  }, []);
+
+  if (isClient) {
     return <Linkify>{children}</Linkify>;
   }
   return children;
