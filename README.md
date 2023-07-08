@@ -1,18 +1,60 @@
 # react-threads
 
+[![NPM](https://img.shields.io/npm/v/react-threads.svg?style=flat-square&labelColor=black)](https://www.npmjs.com/package/react-threads) [![MIT License](https://img.shields.io/badge/license-MIT-blue?style=flat-square&labelColor=black)](https://github.com/junhoyeo/react-threads/blob/main/license) [![Prettier Code Formatting](https://img.shields.io/badge/code_style-prettier-brightgreen.svg?style=flat-square&labelColor=black)](https://prettier.io)
+
 > Work in Progress. _Powered by **[junhoyeo/threads-api](https://github.com/junhoyeo/threads-api)**._
 
 [![cover](.github/cover.png)](https://github.com/junhoyeo)
 
+## 📦 Setup
+
+```bash
+yarn add next react-threads threads-api
+yarn add -D tailwindcss postcss autoprefixer
+```
+
+```js
+// tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.{ts,tsx}',
+
+    // path to `react-threads`
+    'node_modules/react-threads/**/*',
+  ],
+};
+```
+
+```js
+// next.config.js
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.fbcdn.net',
+      },
+    ],
+  },
+};
+
+module.exports = nextConfig;
+```
+
 ## 🚀 Usage
 
-```typescript
+```ts
 import { GetStaticProps, NextPage } from 'next';
+import { BannerCTA, Thread } from 'react-threads';
 import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
-
-// FIXME: Component library coming soon...
-// import { BannerCTA } from '@/components/BannerCTA';
-// import { Thread } from '@/components/Thread';
 
 const threadsAPI = new ThreadsAPI();
 
@@ -23,7 +65,6 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
   try {
-    // const tweetAst = await fetchTweetAst(tweetId)
     const threadID = context.params?.threadId;
     if (!threadID) {
       console.log('[!] Thread ID not provided');
