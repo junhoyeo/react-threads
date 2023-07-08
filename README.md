@@ -4,6 +4,63 @@
 
 [![cover](.github/cover.png)](https://github.com/junhoyeo)
 
+## 🚀 Usage
+
+```typescript
+import { GetStaticProps, NextPage } from 'next';
+import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
+
+// FIXME: Component library coming soon...
+// import { BannerCTA } from '@/components/BannerCTA';
+// import { Thread } from '@/components/Thread';
+
+const threadsAPI = new ThreadsAPI();
+
+type Props = {
+  threadID: string;
+  thread: ThreadPost;
+};
+
+export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
+  try {
+    // const tweetAst = await fetchTweetAst(tweetId)
+    const threadID = context.params?.threadId;
+    if (!threadID) {
+      console.log('[!] Thread ID not provided');
+      return { notFound: true };
+    }
+    const postID = await threadsAPI.getPostIDfromThreadID(threadID);
+    if (!postID) {
+      console.log(
+        '[!] Post ID not found with provided Thread ID (in threadsAPI.getPostIDfromThreadID):',
+        threadID,
+      );
+      return { notFound: true };
+    }
+    const thread = await threadsAPI.getThreads(postID);
+    const { containing_thread } = thread;
+
+    return {
+      props: {
+        threadID,
+        thread: containing_thread,
+      },
+      revalidate: 10,
+    };
+  } catch (err) {
+    console.error('[*] Error fetching Thread', err);
+    throw err;
+  }
+};
+
+export async function getStaticPaths() {
+  return {
+    paths: ['/CuW23qzhIdJ'], // FIXME: Update `paths`
+    fallback: true,
+  };
+}
+```
+
 ## 🏴‍☠️ Useful Building Blocks
 
 - Looking for an API client?

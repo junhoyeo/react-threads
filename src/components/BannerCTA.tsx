@@ -18,7 +18,7 @@ export const BannerCTA: React.FC = () => {
           </div>
         </div>
         <p className="text-[rgb(97,97,97)] text-[15px]">Follow and give @junhoyeo a star.</p>
-        <a href="https://github.com/junhoyeo/react-threads" target="_blank">
+        <a href="https://github.com/junhoyeo/threads-api" target="_blank">
           <button className="mt-[32px] border-[0.9px] border-[rgba(243,245,247,0.15)] rounded-[10px] px-4 text-[rgb(243,245,247)] font-semibold text-[15px] h-[34px] transition-transform focus:scale-95">
             Star on GitHub
           </button>

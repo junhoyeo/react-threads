@@ -37,8 +37,7 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
       revalidate: 10,
     };
   } catch (err) {
-    console.error('error fetching tweet', err);
-
+    console.error('[*] Error fetching Thread', err);
     throw err;
   }
 };
