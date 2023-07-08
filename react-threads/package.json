@@ -1,6 +1,28 @@
 {
   "name": "react-threads",
   "version": "1.0.0",
+  "repository": "https://github.com/junhoyeo/react-threads",
+  "author": "Junho Yeo <i@junho.io>",
+  "license": "MIT",
+  "main": "./dist/react-threads.umd.js",
+  "module": "./dist/react-threads.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc"
+  },
   "dependencies": {
     "react-linkify": "^1.0.0-alpha"
   },
@@ -9,11 +31,14 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "@types/react-linkify": "^1.0.1",
+    "@vitejs/plugin-react": "^4.0.2",
     "autoprefixer": "10.4.14",
     "postcss": "8.4.25",
     "tailwindcss": "3.3.2",
     "threads-api": "^1.0.11",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "vite": "^4.4.2",
+    "vite-plugin-dts": "^3.1.1"
   },
   "peerDependencies": {
     "next": "13.4.9",
