@@ -2730,6 +2730,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-threads@workspace:react-threads":
+  version: 0.0.0-use.local
+  resolution: "react-threads@workspace:react-threads"
+  dependencies:
+    "@types/node": 20.4.0
+    "@types/react": 18.2.14
+    "@types/react-dom": 18.2.6
+    "@types/react-linkify": ^1.0.1
+    autoprefixer: 10.4.14
+    postcss: 8.4.25
+    react-linkify: ^1.0.0-alpha
+    tailwindcss: 3.3.2
+    threads-api: ^1.0.11
+    typescript: 5.1.6
+  peerDependencies:
+    next: 13.4.9
+    react: 18.2.0
+    react-dom: 18.2.0
+  languageName: unknown
+  linkType: soft
+
 "react@npm:18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
