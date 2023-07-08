@@ -4,7 +4,7 @@
 
 > Embed Static Threads in your React/Next.js application. UI components for Meta's Threads. _Powered by **[junhoyeo/threads-api](https://github.com/junhoyeo/threads-api)**._
 
-[![cover](.github/cover.jpg)](https://react-threads.vercel.app/CuUoEcbRFma)
+[![cover](.github/cover.jpg)](https://react-threads.vercel.app)
 
 ## Demo
 
