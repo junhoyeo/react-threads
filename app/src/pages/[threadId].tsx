@@ -10,6 +10,27 @@ type Props = {
   thread: ThreadPost;
 };
 
+const axiosOptions = {
+  headers: {
+    authority: 'www.threads.net',
+    'cache-control': 'no-cache',
+    origin: 'https://www.threads.net',
+    accept:
+      'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'ko,en;q=0.9,ko-KR;q=0.8,ja;q=0.7',
+    pragma: 'no-cache',
+    referer: 'https://www.instagram.com/',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': `navigate`,
+    'sec-fetch-site': `cross-site`,
+    'sec-fetch-user': `?1`,
+    'upgrade-insecure-requests': `1`,
+    'x-asbd-id': undefined,
+    'x-fb-lsd': undefined,
+    'x-ig-app-id': undefined,
+  },
+};
+
 export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
   let postID: string | undefined;
   try {
@@ -18,7 +39,7 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
       console.log('[!] Thread ID not provided');
       return { notFound: true };
     }
-    postID = await threadsAPI.getPostIDfromThreadID(threadID);
+    postID = await threadsAPI.getPostIDfromThreadID(threadID, axiosOptions);
     if (!postID) {
       console.log(
         '[!] Post ID not found with provided Thread ID (in threadsAPI.getPostIDfromThreadID):',
@@ -26,7 +47,7 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
       );
       return { notFound: true };
     }
-    const thread = await threadsAPI.getThreads(postID);
+    const thread = await threadsAPI.getThreads(postID, axiosOptions);
     const { containing_thread } = thread;
 
     return {
