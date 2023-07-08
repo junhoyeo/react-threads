@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
 
 export async function getStaticPaths() {
   return {
-    paths: ['/CuW23qzhIdJ'],
+    paths: [],
     fallback: true,
   };
 }
