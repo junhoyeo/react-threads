@@ -1,4 +1,4 @@
-type SVGProps = React.FC<React.SVGAttributes<SVGElement>>;
+export type SVGProps = React.FC<React.SVGAttributes<SVGElement>>;
 
 const Verified: SVGProps = (props) => (
   <svg

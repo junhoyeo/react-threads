@@ -18,7 +18,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
   const user = post.user;
 
   return (
-    <div className="z-10 flex flex-col w-full max-w-xl mx-auto">
+    <div className="z-10 flex flex-col w-full max-w-xl mx-auto text-[rgb(243,245,247)]">
       <div>
         <div className="pt-1 pb-4">
           <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">

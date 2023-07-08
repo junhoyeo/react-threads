@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
 import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
+import { BannerCTA } from '@/components/BannerCTA';
 import { Thread } from '@/components/Thread';
 
 const threadsAPI = new ThreadsAPI();
@@ -51,8 +52,11 @@ export async function getStaticPaths() {
 
 const ThreadDetailPage: NextPage<Props> = (props) => {
   return (
-    <div className="w-full bg-black flex items-center justify-center py-[36px] min-h-screen">
-      <div className="flex max-w-xl mx-auto">{!!props.thread && <Thread thread={props.thread} />}</div>
+    <div className="w-full flex items-center justify-center py-[36px] min-h-screen">
+      <main className="flex flex-col max-w-xl mx-auto">
+        {!!props.thread && <Thread thread={props.thread} />}
+        <BannerCTA />
+      </main>
     </div>
   );
 };
