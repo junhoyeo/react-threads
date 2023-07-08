@@ -1,7 +1,44 @@
 import Image from 'next/image';
+import { useMemo } from 'react';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '@/utils/format';
 import { ThreadIcons } from './ThreadIcons';
+
+type ThreadLinkPreviewAttachmentProps = {
+  link_preview_attachment: {
+    image_url: string;
+    title: string;
+    url: string;
+  };
+};
+const ThreadLinkPreviewAttachment: React.FC<ThreadLinkPreviewAttachmentProps> = ({
+  link_preview_attachment,
+}) => {
+  const cleanedHostname = useMemo(
+    () => (link_preview_attachment.url.split('://')[1] || link_preview_attachment.url).split('/')[0],
+    [link_preview_attachment.url],
+  );
+
+  return (
+    <div className="mt-4 mb-2 border border-[rgba(243,245,247,0.15)] rounded-[8px] overflow-hidden">
+      <div className="flex flex-col">
+        <Image
+          width={1200}
+          height={1200}
+          className="object-cover w-full"
+          alt=""
+          src={link_preview_attachment.image_url}
+        />
+        <div className="flex flex-col p-4">
+          <span className="text-[rgb(97,97,97)] text-[13px]">{cleanedHostname}</span>
+          <span className="mt-1 truncate text-[rgb(243,245,247)] text-[15px] leading-[21px]">
+            {link_preview_attachment.title}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 type ThreadProps = {
   thread: ThreadPost;
@@ -67,15 +104,21 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                   </div>
                 </div>
               )}
-              <div className="mt-2">
+
+              {/* <div className="mt-2">
                 <div className="z-0 flex min-h-0 position">
-                  {/* primary outline */}
                   <img
                     className="border-[0.5px] rounded-[8px] border-[rgba(243,245,247,0.15)]"
                     src="https://pbs.twimg.com/media/F0cYJwwWAAI4qQG?format=jpg&name=4096x4096"
                   />
                 </div>
-              </div>
+              </div> */}
+
+              {post.text_post_app_info.link_preview_attachment && (
+                <ThreadLinkPreviewAttachment
+                  link_preview_attachment={post.text_post_app_info.link_preview_attachment}
+                />
+              )}
 
               <div className="mt-[6px]">
                 <div className="grid grid-cols-[36px_36px_36px_36px]">
