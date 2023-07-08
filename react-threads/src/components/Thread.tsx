@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '../utils/format';
 import { Linkify } from './Linkify';
-import { ThreadIcons } from './ThreadIcons';
+import { ThreadsIcons } from './ThreadsIcons';
 
 const LinkifyWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -97,7 +97,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                       <a className="text-[rgb(243,245,247)] inline">{user.username}</a>
                       {user.is_verified && (
                         <span className="ml-1">
-                          <ThreadIcons.Verified className="relative block" />
+                          <ThreadsIcons.Verified className="relative block" />
                         </span>
                       )}
                     </span>
@@ -144,16 +144,16 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                 <div className="mt-[6px]">
                   <div className="grid grid-cols-[36px_36px_36px_36px]">
                     <Button>
-                      <ThreadIcons.Like />
+                      <ThreadsIcons.Like />
                     </Button>
                     <Button>
-                      <ThreadIcons.Comment />
+                      <ThreadsIcons.Comment />
                     </Button>
                     <Button>
-                      <ThreadIcons.Repost />
+                      <ThreadsIcons.Repost />
                     </Button>
                     <Button>
-                      <ThreadIcons.Send />
+                      <ThreadsIcons.Send />
                     </Button>
                   </div>
                 </div>

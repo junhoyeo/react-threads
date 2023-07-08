@@ -1,12 +1,12 @@
 import './tailwind.css';
 
-export { BannerCTA, type BannerCTAProps } from './components/BannerCTA';
+export { ThreadsBannerCTA, type ThreadsBannerCTAProps } from './components/ThreadsBannerCTA';
 export {
   Thread,
   type ThreadProps,
   type ThreadLinkPreviewAttachmentProps,
   ThreadLinkPreviewAttachment,
 } from './components/Thread';
-export { ThreadAppIcon } from './components/ThreadAppIcon';
-export { ThreadIcons } from './components/ThreadIcons';
+export { ThreadsAppIcon } from './components/ThreadsAppIcon';
+export { ThreadsIcons } from './components/ThreadsIcons';
 export { formatToRelative } from './utils/format';

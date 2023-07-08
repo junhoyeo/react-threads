@@ -1,6 +1,6 @@
-import { SVGProps } from './ThreadIcons';
+import { SVGProps } from './ThreadsIcons';
 
-export const ThreadAppIcon: SVGProps = (props) => (
+export const ThreadsAppIcon: SVGProps = (props) => (
   <svg
     aria-label="Threads"
     fill="none"

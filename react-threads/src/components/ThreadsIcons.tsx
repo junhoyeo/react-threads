@@ -110,7 +110,7 @@ const Send: SVGProps = (props) => (
   </svg>
 );
 
-export const ThreadIcons = {
+export const ThreadsIcons = {
   Verified,
   Like,
   Comment,

@@ -1,4 +1,4 @@
-import { BannerCTA as ThreadsBannerCTA } from 'react-threads';
+import { ThreadsBannerCTA } from 'react-threads';
 
 export const BannerCTA: React.FC = () => {
   return (

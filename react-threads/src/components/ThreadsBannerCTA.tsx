@@ -1,6 +1,6 @@
-import { ThreadAppIcon } from './ThreadAppIcon';
+import { ThreadsAppIcon } from './ThreadsAppIcon';
 
-export type BannerCTAProps = {
+export type ThreadsBannerCTAProps = {
   // FIXME: pass classnames with `clsx`
   imageProps?: Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'className'>;
   description?: string;
@@ -8,7 +8,12 @@ export type BannerCTAProps = {
   href?: string;
 };
 
-export const BannerCTA: React.FC<BannerCTAProps> = ({ imageProps, description, title, href }) => {
+export const ThreadsBannerCTA: React.FC<ThreadsBannerCTAProps> = ({
+  imageProps,
+  description,
+  title,
+  href,
+}) => {
   return (
     <div className="mx-4 mt-4">
       {/* wrapper */}
@@ -16,7 +21,7 @@ export const BannerCTA: React.FC<BannerCTAProps> = ({ imageProps, description, t
       <div className="flex flex-col items-center w-full py-[44px] px-[16px] bg-[rgb(10,10,10)] rounded-[16px]">
         {/* contents */}
         <div className="mb-[16px] relative w-[84px] h-[84px]">
-          <ThreadAppIcon className="bg-black rounded-[22%] -py-[7px]" />
+          <ThreadsAppIcon className="bg-black rounded-[22%] -py-[7px]" />
           <div className="bg-slate-[rgb(10,10,10)] p-1 rounded-full absolute right-0 bottom-0">
             <img className="h-[54px] w-[54px] object-cover rounded-full" {...imageProps} />
           </div>
