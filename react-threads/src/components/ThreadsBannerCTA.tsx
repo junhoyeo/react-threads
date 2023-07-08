@@ -27,8 +27,8 @@ export const ThreadsBannerCTA: React.FC<ThreadsBannerCTAProps> = ({
           </div>
         </div>
         <p className="text-[rgb(97,97,97)] text-[15px]">{description}</p>
-        <a href={href} target="_blank">
-          <button className="mt-[32px] border-[0.9px] border-[rgba(243,245,247,0.15)] rounded-[10px] px-4 text-[rgb(243,245,247)] font-semibold text-[15px] h-[34px] transition-transform focus:scale-95">
+        <a className="mt-[32px]" href={href} target="_blank">
+          <button className="border-[0.9px] border-[rgba(243,245,247,0.15)] rounded-[10px] px-4 text-[rgb(243,245,247)] font-semibold text-[15px] h-[34px] transition-transform focus:scale-95">
             {title}
           </button>
         </a>
