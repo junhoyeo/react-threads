@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
-import { type Thread as ThreadPost } from 'threads-api';
+import {
+  Candidate,
+  ThreadsHdProfilePicVersion,
+  type Thread as ThreadPost,
+  type Post,
+  type RepostedPost,
+} from 'threads-api';
 import { formatToRelative } from '../utils/format';
 import { LinkifyWrapper } from './LinkifyWrapper';
 import { ThreadsIcons } from './ThreadsIcons';
@@ -36,6 +42,53 @@ export const ThreadLinkPreviewAttachment: React.FC<ThreadLinkPreviewAttachmentPr
             {link_preview_attachment.title}
           </span>
         </div>
+      </div>
+    </div>
+  );
+};
+
+export type ThreadImageProps = {
+  post: Post | RepostedPost;
+};
+export const ThreadImage: React.FC<ThreadImageProps> = ({ post }) => {
+  const bestCandidate = useMemo(() => {
+    type CandiateItem = Candidate | ThreadsHdProfilePicVersion;
+    const candidates: CandiateItem[] = post.image_versions2?.candidates;
+
+    if (!candidates.length) {
+      return null;
+    }
+
+    // largest candidate
+    let is_square: boolean = true;
+    const best = candidates.reduce((prev, current) => {
+      if ((prev?.width || 0) > (current?.width || 0)) {
+        return prev;
+      } else {
+        return current;
+      }
+    }, undefined as CandiateItem | undefined)!;
+
+    return best;
+  }, [post.image_versions2]);
+
+  if (!bestCandidate) {
+    return null;
+  }
+
+  return (
+    <div className="mt-2">
+      <div className="z-0 flex min-h-0 position">
+        <Image
+          width={bestCandidate.width}
+          height={bestCandidate.height}
+          className="w-full h-auto border-[0.5px] rounded-[8px] border-[rgba(243,245,247,0.15)]"
+          alt=""
+          style={{
+            aspectRatio: `${post.original_width / post.original_height}`,
+          }}
+          src={bestCandidate.url}
+        />
       </div>
     </div>
   );
@@ -112,14 +165,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                   )}
                 </LinkifyWrapper>
 
-                {/* <div className="mt-2">
-                <div className="z-0 flex min-h-0 position">
-                  <img
-                    className="border-[0.5px] rounded-[8px] border-[rgba(243,245,247,0.15)]"
-                    src="https://pbs.twimg.com/media/F0cYJwwWAAI4qQG?format=jpg&name=4096x4096"
-                  />
-                </div>
-              </div> */}
+                <ThreadImage post={post} />
 
                 {post.text_post_app_info.link_preview_attachment && (
                   <ThreadLinkPreviewAttachment
