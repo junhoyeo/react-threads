@@ -6,10 +6,10 @@
 
 - Looking for an API client?
   - **[junhoyeo/threads-api ![](https://img.shields.io/github/stars/junhoyeo%2Fthreads-api?style=social)](https://github.com/junhoyeo/threads-api)**
-- Using Private Git Submodules when deploying with Vercel?
+- Using [_Private Git Submodules_](https://github.com/orgs/vercel/discussions/44) when deploying with Vercel?
   - **[junhoyeo/vercel-submodules ![](https://img.shields.io/github/stars/junhoyeo%2Fvercel-submodules?style=social)](https://github.com/junhoyeo/vercel-submodules)**
 
-## 🏴‍☠️ Inspired from
+## 🏴‍☠️ Inspired from 🤍
 
 - [vercel-labs/react-tweet](https://github.com/vercel-labs/react-tweet)
 - [transitive-bullshit/react-static-tweets](https://github.com/transitive-bullshit/react-static-tweets)
