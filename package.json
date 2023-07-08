@@ -1,30 +1,16 @@
 {
-  "name": "react-threads",
-  "version": "0.1.0",
+  "name": "@junhoyeo/react-threads-project",
   "private": true,
+  "workspaces": [
+    "app",
+    "react-threads"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
     "format": "prettier --write ."
-  },
-  "dependencies": {
-    "@types/node": "20.4.0",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
-    "autoprefixer": "10.4.14",
-    "next": "13.4.9",
-    "postcss": "8.4.25",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-linkify": "^1.0.0-alpha",
-    "tailwindcss": "3.3.2",
-    "threads-api": "^1.0.11",
-    "typescript": "5.1.6"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/react-linkify": "^1.0.1",
     "prettier": "^2.8.0"
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }
