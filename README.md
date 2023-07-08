@@ -15,10 +15,14 @@
 
 ## 📦 Setup
 
+First, install `react-threads` with it's dependencies.
+
 ```bash
 yarn add next react-threads threads-api
 yarn add -D tailwindcss postcss autoprefixer
 ```
+
+Add path to `react-threads` to [content sources](https://tailwindcss.com/docs/content-configuration) of your Tailwind Configuration file(`tailwind.config.js`).
 
 ```js
 // tailwind.config.js
@@ -33,6 +37,8 @@ module.exports = {
   ],
 };
 ```
+
+Set [`images.remotePatterns` to your app's `next.config.js`](https://nextjs.org/docs/pages/api-reference/components/image#remotepatterns). We use `next/image` to proxy images under the hood.
 
 ```js
 // next.config.js
