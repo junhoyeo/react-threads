@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: '**.cdninstagram.com',
       },
       {
+        // sometimes upper pattern don't work. adding for safety
+        protocol: 'https',
+        hostname: 'scontent.cdninstagram.com',
+      },
+      {
         protocol: 'https',
         hostname: '**.fbcdn.net',
       },

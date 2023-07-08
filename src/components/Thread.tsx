@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
+import Linkify from 'react-linkify';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '@/utils/format';
 import { ThreadIcons } from './ThreadIcons';
@@ -98,16 +99,24 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
               </div>
 
               <div className="pt-[10px] row-[2/span_2] col-[1/span_2]">
-                {!!post.caption?.text && (
-                  <div>
-                    <div
-                      className="mt-[3px] whitespace-pre-wrap leading-[140%]"
-                      style={{ overflowWrap: 'anywhere', fontSize: '.9375rem' }}
-                    >
-                      <p className="my-0">{post.caption?.text}</p>
+                <Linkify
+                  componentDecorator={(decoratedHref, decoratedText, key) => (
+                    <a target="_blank" href={decoratedHref} key={key} style={{ color: 'rgb(0, 149, 246)' }}>
+                      {decoratedText}
+                    </a>
+                  )}
+                >
+                  {!!post.caption?.text && (
+                    <div>
+                      <div
+                        className="mt-[3px] whitespace-pre-wrap leading-[140%]"
+                        style={{ overflowWrap: 'anywhere', fontSize: '.9375rem' }}
+                      >
+                        <p className="my-0">{post.caption?.text}</p>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </Linkify>
 
                 {/* <div className="mt-2">
                 <div className="z-0 flex min-h-0 position">

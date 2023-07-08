@@ -53,7 +53,7 @@ export async function getStaticPaths() {
 const ThreadDetailPage: NextPage<Props> = (props) => {
   return (
     <div className="w-full flex items-center justify-center py-[36px] min-h-screen">
-      <main className="flex flex-col max-w-xl mx-auto">
+      <main className="flex flex-col w-full max-w-xl mx-auto">
         {!!props.thread && <Thread thread={props.thread} />}
         <BannerCTA />
       </main>
