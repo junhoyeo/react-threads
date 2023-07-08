@@ -118,36 +118,14 @@ const Home: NextPage = () => {
       <div className="z-10 flex flex-col w-full max-w-xl mx-auto">
         <div>
           <div className="pt-1 pb-4">
-            <div
-              className="grid"
-              style={{
-                gridTemplateColumns: '48px minmax(0,1fr)',
-                gridTemplateRows: '36px 0 max-content max-content',
-              }}
-            >
-              <div
-                className="pt-0"
-                style={{
-                  gridRow: '1/span 2',
-                  gridColumn: 1,
-                }}
-              >
+            <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">
+              <div className="pt-0 row-[1/span_2] column-[1]">
                 <div className="w-[36px] h-[36px] rounded-full bg-[rgb(30,30,30)]">
                   <img src="https://pbs.twimg.com/profile_images/1671510098169180161/xdQUtnOJ_400x400.jpg" />
                 </div>
               </div>
-              <div
-                className="self-center pt-0 col-[2]"
-                style={{
-                  gridRow: '1/span 2',
-                }}
-              >
-                <div
-                  className="grid h-full"
-                  style={{
-                    gridTemplateColumns: `1fr max-content`,
-                  }}
-                >
+              <div className="self-center pt-0 col-[2] row-[1/span_2]">
+                <div className="grid h-full grid-cols-[1fr_max-content]">
                   <div className="col-[1] self-center">
                     <span className="flex items-center">
                       <a className="text-[rgb(243,245,247)] inline">netflix</a>
@@ -164,20 +142,11 @@ const Home: NextPage = () => {
                 </div>
               </div>
 
-              <div
-                className="pt-[10px]"
-                style={{
-                  gridColumn: '1/span 2',
-                  gridRow: '2/span 2',
-                }}
-              >
+              <div className="pt-[10px] row-[2/span_2] col-[1/span_2]">
                 <div>
                   <div
                     className="mt-[3px] whitespace-pre-wrap leading-[140%]"
-                    style={{
-                      overflowWrap: 'anywhere',
-                      fontSize: '.9375rem',
-                    }}
+                    style={{ overflowWrap: 'anywhere', fontSize: '.9375rem' }}
                   >
                     <p className="my-0">A lil Wednesday Morning Motivation for us all</p>
                   </div>
@@ -193,12 +162,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="mt-[6px]">
-                  <div
-                    className="grid"
-                    style={{
-                      gridTemplateColumns: '36px 36px 36px 36px',
-                    }}
-                  >
+                  <div className="grid grid-cols-[36px]">
                     <Button>
                       <Like />
                     </Button>
@@ -214,17 +178,11 @@ const Home: NextPage = () => {
                   </div>
                 </div>
 
-                <div
-                  className="flex items-end"
-                  style={{
-                    gridColumn: '1/span 2',
-                    gridRow: 4,
-                  }}
-                >
-                  <div className="flex items-center min-h-[22px]">
-                    <span className="leading-[21px] text-[15px] text-[rgb(97,97,97)]">488 replies</span>
-                    <span className="leading-[21px] text-[15px] text-[rgb(97,97,97)]">&nbsp;·&nbsp;</span>
-                    <span className="leading-[21px] text-[15px] text-[rgb(97,97,97)]">10,868 likes</span>
+                <div className="flex items-end row-[4] col-[1/span_2]">
+                  <div className="flex items-center min-h-[22px] leading-[21px] text-[15px] text-[rgb(97,97,97)]">
+                    <span>488 replies</span>
+                    <span>&nbsp;·&nbsp;</span>
+                    <span>10,868 likes</span>
                   </div>
                 </div>
               </div>
