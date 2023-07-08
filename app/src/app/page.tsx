@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { BannerCTA } from 'react-threads';
+import { BannerCTA } from '@/components/BannerCTA';
 
 const Home: NextPage = () => {
   return (

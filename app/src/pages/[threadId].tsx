@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
-import { BannerCTA, Thread } from 'react-threads';
+import { Thread } from 'react-threads';
 import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
+import { BannerCTA } from '@/components/BannerCTA';
 
 const threadsAPI = new ThreadsAPI();
 
