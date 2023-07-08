@@ -5,16 +5,23 @@
   "author": "Junho Yeo <i@junho.io>",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "default": "./dist/index.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "swc src -d dist --copy-files && tsc"
+    "build": "yarn swc && tsc",
+    "swc": "rm -rf dist && yarn swc:cjs && yarn swc:esm",
+    "swc:cjs": "swc src -d dist/cjs -C module.type=commonjs",
+    "swc:esm": "swc src -d dist/esm -C module.type=es6"
   },
   "dependencies": {
     "react-linkify": "^1.0.0-alpha"

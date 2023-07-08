@@ -1,63 +1,15 @@
 import Image from 'next/image';
-import { useMemo } from 'react';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '../utils/format';
-import { Linkify } from './Linkify';
+import { LinkifyWrapper } from './LinkifyWrapper';
 import { ThreadIcons } from './ThreadIcons';
-
-const LinkifyWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
-  if (typeof window !== 'undefined') {
-    return <Linkify>{children}</Linkify>;
-  }
-  return children;
-};
-
-export type ThreadLinkPreviewAttachmentProps = {
-  link_preview_attachment: {
-    image_url: string;
-    title: string;
-    url: string;
-  };
-};
-export const ThreadLinkPreviewAttachment: React.FC<ThreadLinkPreviewAttachmentProps> = ({
-  link_preview_attachment,
-}) => {
-  const cleanedHostname = useMemo(
-    () => (link_preview_attachment.url.split('://')[1] || link_preview_attachment.url).split('/')[0],
-    [link_preview_attachment.url],
-  );
-
-  return (
-    <div className="mt-4 mb-2 border border-[rgba(243,245,247,0.15)] rounded-[8px] overflow-hidden">
-      <div className="flex flex-col">
-        <Image
-          width={1200}
-          height={1200}
-          className="object-cover w-full"
-          alt=""
-          src={link_preview_attachment.image_url}
-        />
-        <div className="flex flex-col p-4">
-          <span className="text-[rgb(97,97,97)] text-[13px]">{cleanedHostname}</span>
-          <span className="mt-1 truncate text-[rgb(243,245,247)] text-[15px] leading-[21px]">
-            {link_preview_attachment.title}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { ThreadLinkPreviewAttachment } from './ThreadLinkPreviewAttachment';
 
 export type ThreadProps = {
   thread: ThreadPost;
 };
 export const Thread: React.FC<ThreadProps> = ({ thread }) => {
   const item = thread?.thread_items?.[0];
-
-  if (!item) {
-    console.log(thread);
-    return null;
-  }
   const reposted_post = item.post.text_post_app_info.share_info.reposted_post;
   const quoted_post = item.post.text_post_app_info.share_info.quoted_post;
   const post = reposted_post ? reposted_post : quoted_post ? quoted_post : item.post;
@@ -74,13 +26,13 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
             <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">
               <div className="pt-0 row-[1/span_2] col-[1]">
                 <div className="w-[36px] h-[36px] rounded-full bg-[rgb(30,30,30)] overflow-hidden">
-                  <Image
+                  {/* <Image
                     className="w-full h-full"
                     alt={user.username}
                     src={user.profile_pic_url}
                     width={1200}
                     height={1200}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="self-center pt-0 col-[2] row-[1/span_2]">
@@ -128,11 +80,11 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                 </div>
               </div> */}
 
-                {post.text_post_app_info.link_preview_attachment && (
+                {/* {post.text_post_app_info.link_preview_attachment && (
                   <ThreadLinkPreviewAttachment
                     link_preview_attachment={post.text_post_app_info.link_preview_attachment}
                   />
-                )}
+                )} */}
 
                 <div className="mt-[6px]">
                   <div className="grid grid-cols-[36px_36px_36px_36px]">
