@@ -2,7 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/v/react-threads.svg?style=flat-square&labelColor=black)](https://www.npmjs.com/package/react-threads) [![MIT License](https://img.shields.io/badge/license-MIT-blue?style=flat-square&labelColor=black)](https://github.com/junhoyeo/react-threads/blob/main/license) [![Prettier Code Formatting](https://img.shields.io/badge/code_style-prettier-brightgreen.svg?style=flat-square&labelColor=black)](https://prettier.io)
 
-> Embed Static Threads in your React/Next.js application. _Powered by **[junhoyeo/threads-api](https://github.com/junhoyeo/threads-api)**._
+> Embed Static Threads in your React/Next.js application. UI components for Meta's Threads. _Powered by **[junhoyeo/threads-api](https://github.com/junhoyeo/threads-api)**._
 
 [![cover](.github/cover.jpg)](https://react-threads.vercel.app/CuUoEcbRFma)
 
