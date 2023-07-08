@@ -1,5 +1,3 @@
-'use client';
-
 import ReactLinkify from 'react-linkify';
 
 export const Linkify: React.FC<React.PropsWithChildren> = ({ children }) => {

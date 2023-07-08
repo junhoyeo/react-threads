@@ -4,13 +4,13 @@
   "repository": "https://github.com/junhoyeo/react-threads",
   "author": "Junho Yeo <i@junho.io>",
   "license": "MIT",
-  "main": "./dist/react-threads.umd.js",
-  "module": "./dist/react-threads.es.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/react-threads.es.js",
-      "require": "./dist/react-threads.umd.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     },
     "./style.css": {
       "import": "./dist/style.css",
@@ -33,6 +33,7 @@
     "@types/react-linkify": "^1.0.1",
     "@vitejs/plugin-react": "^4.0.2",
     "autoprefixer": "10.4.14",
+    "babel-plugin-formatjs": "^10.5.3",
     "postcss": "8.4.25",
     "tailwindcss": "3.3.2",
     "threads-api": "^1.0.11",

@@ -1,23 +1,9 @@
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { type Thread as ThreadPost } from 'threads-api';
 import { formatToRelative } from '../utils/format';
-import { Linkify } from './Linkify';
+import { LinkifyWrapper } from './LinkifyWrapper';
 import { ThreadsIcons } from './ThreadsIcons';
-
-const LinkifyWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [isClient, setIsClient] = useState<boolean>(false);
-
-  useEffect(() => {
-    // typeof window !== 'undefined'
-    setIsClient(true);
-  }, []);
-
-  if (isClient) {
-    return <Linkify>{children}</Linkify>;
-  }
-  return children;
-};
 
 export type ThreadLinkPreviewAttachmentProps = {
   link_preview_attachment: {
