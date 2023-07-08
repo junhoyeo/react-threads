@@ -1,11 +1,12 @@
 import { GetStaticProps, NextPage } from 'next';
-import { Thread, ThreadsAPI } from 'threads-api';
+import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
+import { Thread } from '@/components/Thread';
 
 const threadsAPI = new ThreadsAPI();
 
 type Props = {
   threadID: string;
-  thread: Thread;
+  thread: ThreadPost;
 };
 
 export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
@@ -48,8 +49,14 @@ export async function getStaticPaths() {
   };
 }
 
-const ThreadDetailPage: NextPage = (props) => {
-  return <div>{JSON.stringify(props)}</div>;
+const ThreadDetailPage: NextPage<Props> = (props) => {
+  console.log(props);
+  console.log(props.thread);
+  return (
+    <div className="w-full bg-black">
+      <div className="max-w-xl">{!!props.thread && <Thread thread={props.thread} />}</div>
+    </div>
+  );
 };
 
 export default ThreadDetailPage;
