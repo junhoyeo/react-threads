@@ -1,7 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
+import { BannerCTA, Thread } from 'react-threads';
 import { Thread as ThreadPost, ThreadsAPI } from 'threads-api';
-import { BannerCTA } from '@/components/BannerCTA';
-import { Thread } from '@/components/Thread';
 
 const threadsAPI = new ThreadsAPI();
 
@@ -12,7 +11,6 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
   try {
-    // const tweetAst = await fetchTweetAst(tweetId)
     const threadID = context.params?.threadId;
     if (!threadID) {
       console.log('[!] Thread ID not provided');

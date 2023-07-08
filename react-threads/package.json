@@ -9,8 +9,8 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "import": "./dist/react-threads.es.js",
+      "require": "./dist/react-threads.umd.js"
     },
     "./style.css": {
       "import": "./dist/style.css",
