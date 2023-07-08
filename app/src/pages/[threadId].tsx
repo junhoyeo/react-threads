@@ -11,13 +11,14 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async (context) => {
+  let postID: string | undefined;
   try {
     const threadID = context.params?.threadId;
     if (!threadID) {
       console.log('[!] Thread ID not provided');
       return { notFound: true };
     }
-    const postID = await threadsAPI.getPostIDfromThreadID(threadID);
+    postID = await threadsAPI.getPostIDfromThreadID(threadID);
     if (!postID) {
       console.log(
         '[!] Post ID not found with provided Thread ID (in threadsAPI.getPostIDfromThreadID):',
@@ -36,8 +37,8 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
       revalidate: 10,
     };
   } catch (err) {
-    console.error('[*] Error fetching Thread', err);
-    throw err;
+    console.error('[*] Error fetching Thread', err, postID);
+    throw new Error('[*] Error fetching Thread');
   }
 };
 
