@@ -119,7 +119,7 @@ const Home: NextPage = () => {
         <div>
           <div className="pt-1 pb-4">
             <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">
-              <div className="pt-0 row-[1/span_2] column-[1]">
+              <div className="pt-0 row-[1/span_2] col-[1]">
                 <div className="w-[36px] h-[36px] rounded-full bg-[rgb(30,30,30)]">
                   <img src="https://pbs.twimg.com/profile_images/1671510098169180161/xdQUtnOJ_400x400.jpg" />
                 </div>
@@ -162,7 +162,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="mt-[6px]">
-                  <div className="grid grid-cols-[36px]">
+                  <div className="grid grid-cols-[36px_36px_36px_36px]">
                     <Button>
                       <Like />
                     </Button>
