@@ -133,7 +133,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                   {!!user && (
                     <Image
                       className="w-full h-full"
-                      alt={user.username}
+                      alt=""
                       src={user.profile_pic_url}
                       width={1200}
                       height={1200}
@@ -191,7 +191,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                       {!!nestedPost.user && (
                         <Image
                           className="w-[18px] h-[18px] mr-2 rounded-full"
-                          alt={nestedPost.user.username}
+                          alt=""
                           src={nestedPost.user.profile_pic_url}
                           width={1200}
                           height={1200}
