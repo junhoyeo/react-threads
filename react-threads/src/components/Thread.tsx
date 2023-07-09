@@ -100,10 +100,12 @@ export type ThreadProps = {
 export const Thread: React.FC<ThreadProps> = ({ thread }) => {
   const item = useMemo(() => thread?.thread_items?.find((v) => !!v?.post?.user), [thread]);
 
-  const reposted_post = item?.post?.text_post_app_info?.share_info?.reposted_post;
-  // const quoted_post = item?.post.text_post_app_info.share_info.quoted_post;
-  const post = reposted_post || item?.post || null;
-  const user = post?.user;
+  const [post, user] = useMemo(() => {
+    const _repostedPost = item?.post?.text_post_app_info?.share_info?.reposted_post;
+    const _post = _repostedPost || item?.post || null;
+    const _user = _post?.user;
+    return [_post, _user];
+  }, [item]);
 
   const nestedPost = useMemo(() => {
     const reposted_post = post?.text_post_app_info?.share_info?.reposted_post;
