@@ -1,4 +1,7 @@
-export const formatToRelative = (timestamp: number) => {
+export const formatToRelative = (timestamp?: number) => {
+  if (typeof timestamp === 'undefined') {
+    return '-';
+  }
   timestamp = timestamp * 1_000;
   const seconds = Math.floor((new Date().getTime() - timestamp) / 1000);
   let interval = seconds / 31536000;

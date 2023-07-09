@@ -60,7 +60,7 @@ export const ThreadImage: React.FC<ThreadImageProps> = ({ post }) => {
     }
 
     // largest candidate
-    let is_square: boolean = true;
+    // let is_square: boolean = true;
     const best = candidates.reduce((prev, current) => {
       if ((prev?.width || 0) > (current?.width || 0)) {
         return prev;
@@ -95,19 +95,27 @@ export const ThreadImage: React.FC<ThreadImageProps> = ({ post }) => {
 };
 
 export type ThreadProps = {
-  thread: ThreadPost;
+  thread?: ThreadPost;
 };
 export const Thread: React.FC<ThreadProps> = ({ thread }) => {
   const item = thread?.thread_items?.[0];
 
+  const reposted_post = item?.post.text_post_app_info.share_info.reposted_post;
+  // const quoted_post = item?.post.text_post_app_info.share_info.quoted_post;
+  const post = reposted_post || item?.post || null;
+  const user = post?.user;
+
+  const nestedPost = useMemo(() => {
+    const reposted_post = post?.text_post_app_info.share_info.reposted_post;
+    const quoted_post = post?.text_post_app_info.share_info.quoted_post;
+    return reposted_post || quoted_post || null;
+  }, [post]);
+
   if (!item) {
-    console.log(thread);
     return null;
   }
-  const reposted_post = item.post.text_post_app_info.share_info.reposted_post;
-  const quoted_post = item.post.text_post_app_info.share_info.quoted_post;
-  const post = reposted_post ? reposted_post : quoted_post ? quoted_post : item.post;
-  const user = post.user;
+
+  const nestedRepliesCount = nestedPost?.text_post_app_info.direct_reply_count;
 
   return (
     <div className="px-3 pt-3 pb-4">
@@ -120,21 +128,23 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
             <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">
               <div className="pt-0 row-[1/span_2] col-[1]">
                 <div className="w-[36px] h-[36px] rounded-full bg-[rgb(30,30,30)] overflow-hidden">
-                  <Image
-                    className="w-full h-full"
-                    alt={user.username}
-                    src={user.profile_pic_url}
-                    width={1200}
-                    height={1200}
-                  />
+                  {user?.profile_pic_url && (
+                    <Image
+                      className="w-full h-full"
+                      alt={user.username}
+                      src={user.profile_pic_url}
+                      width={1200}
+                      height={1200}
+                    />
+                  )}
                 </div>
               </div>
               <div className="self-center pt-0 col-[2] row-[1/span_2]">
                 <div className="grid h-full grid-cols-[1fr_max-content]">
                   <div className="col-[1] self-center">
                     <span className="flex items-center">
-                      <a className="text-[rgb(243,245,247)] inline">{user.username}</a>
-                      {user.is_verified && (
+                      <a className="text-[rgb(243,245,247)] inline">{user?.username}</a>
+                      {user?.is_verified && (
                         <span className="ml-1">
                           <ThreadsIcons.Verified className="relative block" />
                         </span>
@@ -144,7 +154,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
 
                   <div className="flex items-center leading-[20px] col-[2]">
                     <span className="text-[rgb(97,97,97)] min-w-[24px] text-center inline-block">
-                      {formatToRelative(post.taken_at)}
+                      {formatToRelative(post?.taken_at)}
                     </span>
                     <div></div>
                   </div>
@@ -153,7 +163,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
 
               <div className="pt-[10px] row-[2/span_2] col-[1/span_2]">
                 <LinkifyWrapper>
-                  {!!post.caption?.text && (
+                  {!!post?.caption?.text && (
                     <div>
                       <div
                         className="mt-[3px] whitespace-pre-wrap leading-[140%]"
@@ -165,12 +175,73 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                   )}
                 </LinkifyWrapper>
 
-                <ThreadImage post={post} />
+                {post && <ThreadImage post={post} />}
 
-                {post.text_post_app_info.link_preview_attachment && (
+                {post?.text_post_app_info.link_preview_attachment && (
                   <ThreadLinkPreviewAttachment
                     link_preview_attachment={post.text_post_app_info.link_preview_attachment}
                   />
+                )}
+
+                {nestedPost && (
+                  <div className="border-[0.5px] border-[rgba(243,245,247,0.15)] p-4 mt-4 rounded-[8px]">
+                    <div className="flex items-center w-full">
+                      {nestedPost.user.profile_pic_url && (
+                        <Image
+                          className="w-[18px] h-[18px] mr-2 rounded-full"
+                          alt={nestedPost.user.username}
+                          src={nestedPost.user.profile_pic_url}
+                          width={1200}
+                          height={1200}
+                        />
+                      )}
+                      <span className="font-semibold text-[13px] text-[rgb(243,245,247)]">
+                        {nestedPost.user.username}
+                      </span>
+                      <span className="ml-auto text-[rgb(97,97,97)] min-w-[24px] text-center inline-block text-[13px]">
+                        {formatToRelative(nestedPost.taken_at)}
+                      </span>
+                    </div>
+
+                    <div className="mt-2">
+                      <LinkifyWrapper>
+                        {!!nestedPost?.caption?.text && (
+                          <p
+                            className="whitespace-pre-wrap leading-[140%] text-[13px]"
+                            style={{ overflowWrap: 'anywhere' }}
+                          >
+                            {nestedPost.caption?.text}
+                          </p>
+                        )}
+                      </LinkifyWrapper>
+
+                      {nestedPost && <ThreadImage post={nestedPost} />}
+
+                      {nestedPost?.text_post_app_info.link_preview_attachment && (
+                        <ThreadLinkPreviewAttachment
+                          link_preview_attachment={nestedPost.text_post_app_info.link_preview_attachment}
+                        />
+                      )}
+                    </div>
+
+                    <div className="mt-[6px] flex items-end row-[4] col-[1/span_2]">
+                      <div className="flex items-center min-h-[22px] leading-[21px] text-[13px] text-[rgb(97,97,97)]">
+                        {(nestedRepliesCount || 0) >= 1 && (
+                          <span>
+                            {`${nestedRepliesCount?.toLocaleString()} ${
+                              nestedRepliesCount === 1 ? 'reply' : 'replies'
+                            }`}
+                          </span>
+                        )}
+                        {(nestedRepliesCount || 0) >= 1 && (nestedPost?.like_count || 0) >= 1 && (
+                          <span>&nbsp;·&nbsp;</span>
+                        )}
+                        {(nestedPost?.like_count || 0) >= 1 && (
+                          <span>{nestedPost?.like_count.toLocaleString()} likes</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 <div className="mt-[6px]">
@@ -194,7 +265,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                   <div className="flex items-center min-h-[22px] leading-[21px] text-[15px] text-[rgb(97,97,97)]">
                     <span>{item.view_replies_cta_string}</span>
                     <span>&nbsp;·&nbsp;</span>
-                    <span>{post.like_count.toLocaleString()} likes</span>
+                    <span>{post?.like_count.toLocaleString()} likes</span>
                   </div>
                 </div>
               </div>
