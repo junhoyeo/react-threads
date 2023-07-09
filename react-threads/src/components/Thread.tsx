@@ -53,7 +53,7 @@ export type ThreadImageProps = {
 export const ThreadImage: React.FC<ThreadImageProps> = ({ post }) => {
   const bestCandidate = useMemo(() => {
     type CandiateItem = Candidate | ThreadsHdProfilePicVersion;
-    const candidates: CandiateItem[] = post.image_versions2?.candidates;
+    const candidates: CandiateItem[] = post.image_versions2?.candidates || [];
 
     if (!candidates.length) {
       return null;
@@ -98,16 +98,16 @@ export type ThreadProps = {
   thread?: ThreadPost;
 };
 export const Thread: React.FC<ThreadProps> = ({ thread }) => {
-  const item = thread?.thread_items?.[0];
+  const item = useMemo(() => thread?.thread_items?.find((v) => !!v?.post?.user), []);
 
-  const reposted_post = item?.post.text_post_app_info.share_info.reposted_post;
+  const reposted_post = item?.post?.text_post_app_info?.share_info?.reposted_post;
   // const quoted_post = item?.post.text_post_app_info.share_info.quoted_post;
   const post = reposted_post || item?.post || null;
   const user = post?.user;
 
   const nestedPost = useMemo(() => {
-    const reposted_post = post?.text_post_app_info.share_info.reposted_post;
-    const quoted_post = post?.text_post_app_info.share_info.quoted_post;
+    const reposted_post = post?.text_post_app_info?.share_info?.reposted_post;
+    const quoted_post = post?.text_post_app_info?.share_info?.quoted_post;
     return reposted_post || quoted_post || null;
   }, [post]);
 
@@ -237,7 +237,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                           <span>&nbsp;·&nbsp;</span>
                         )}
                         {(nestedPost?.like_count || 0) >= 1 && (
-                          <span>{nestedPost?.like_count.toLocaleString()} likes</span>
+                          <span>{nestedPost?.like_count?.toLocaleString()} likes</span>
                         )}
                       </div>
                     </div>
@@ -263,9 +263,11 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
 
                 <div className="flex items-end row-[4] col-[1/span_2]">
                   <div className="flex items-center min-h-[22px] leading-[21px] text-[15px] text-[rgb(97,97,97)]">
-                    <span>{item.view_replies_cta_string}</span>
-                    <span>&nbsp;·&nbsp;</span>
-                    <span>{post?.like_count.toLocaleString()} likes</span>
+                    {!!item.view_replies_cta_string && <span>{item.view_replies_cta_string}</span>}
+                    {!!item.view_replies_cta_string && (post?.like_count || 0) >= 1 && (
+                      <span>&nbsp;·&nbsp;</span>
+                    )}
+                    {(post?.like_count || 0) >= 1 && <span>{post?.like_count?.toLocaleString()} likes</span>}
                   </div>
                 </div>
               </div>
