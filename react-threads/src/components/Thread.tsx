@@ -98,7 +98,7 @@ export type ThreadProps = {
   thread?: ThreadPost;
 };
 export const Thread: React.FC<ThreadProps> = ({ thread }) => {
-  const item = useMemo(() => thread?.thread_items?.find((v) => !!v?.post?.user), []);
+  const item = useMemo(() => thread?.thread_items?.find((v) => !!v?.post?.user), [thread]);
 
   const reposted_post = item?.post?.text_post_app_info?.share_info?.reposted_post;
   // const quoted_post = item?.post.text_post_app_info.share_info.quoted_post;
@@ -128,7 +128,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
             <div className="grid grid-cols-[48px_minmax(0,1fr)] grid-rows-[36px_0_max-content_max-content]">
               <div className="pt-0 row-[1/span_2] col-[1]">
                 <div className="w-[36px] h-[36px] rounded-full bg-[rgb(30,30,30)] overflow-hidden">
-                  {user?.profile_pic_url && (
+                  {!!user && (
                     <Image
                       className="w-full h-full"
                       alt={user.username}
@@ -186,7 +186,7 @@ export const Thread: React.FC<ThreadProps> = ({ thread }) => {
                 {nestedPost && (
                   <div className="border-[0.5px] border-[rgba(243,245,247,0.15)] p-4 mt-4 rounded-[8px]">
                     <div className="flex items-center w-full">
-                      {nestedPost.user.profile_pic_url && (
+                      {!!nestedPost.user && (
                         <Image
                           className="w-[18px] h-[18px] mr-2 rounded-full"
                           alt={nestedPost.user.username}
