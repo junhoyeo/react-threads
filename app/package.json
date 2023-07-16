@@ -13,7 +13,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-threads": "workspace:^",
-    "threads-api": "^1.0.11"
+    "threads-api": "^1.4.4"
   },
   "devDependencies": {
     "@types/node": "20.4.0",
