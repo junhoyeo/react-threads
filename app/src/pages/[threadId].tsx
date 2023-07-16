@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<Props, { threadId: string }> = async
       console.log('[!] Thread ID not provided');
       return { notFound: true };
     }
-    postID = await threadsAPI.getPostIDfromThreadID(threadID, axiosOptions);
+    postID = threadsAPI.getPostIDfromThreadID(threadID);
     if (!postID) {
       console.log(
         '[!] Post ID not found with provided Thread ID (in threadsAPI.getPostIDfromThreadID):',
