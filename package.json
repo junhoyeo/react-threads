@@ -1,6 +1,8 @@
 {
   "name": "@junhoyeo/react-threads-project",
   "private": true,
+  "repository": "https://github.com/junhoyeo/react-threads",
+  "author": "Junho Yeo <i@junho.io>",
   "workspaces": [
     "app",
     "react-threads"
